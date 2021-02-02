@@ -5,11 +5,11 @@ Users can search for their favourite image
 
 # Table of Contents
 
-- [Technologies]
-- [Setup]
-- [Test]
-- [Eject]
-- [Deployment]
+- Technologies
+- Setup
+- Test
+- Eject
+- Deployment
 
 # Teachnologies
 
