@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Navbar from './components/layouts/Navbar';
+import unsplash from './api/unsplash';
+import Images from './components/images/Images';
+
+export class App extends Component {
+	state = {
+		images: [],
+		loading: false,
+	};
+	async componentDidMount() {
+		this.setState({ loading: true });
+		const res = await unsplash.get('/search/photos?query=cars&limit=10');
+		this.setState({ loading: false });
+		this.setState({ images: res.data.results });
+	}
+	render() {
+		const { loading, images } = this.state;
+		return (
+			<div>
+				<Navbar />
+				<div className='container'>
+					<Images loading={loading} images={images} />
+				</div>
+			</div>
+		);
+	}
 }
 
 export default App;
