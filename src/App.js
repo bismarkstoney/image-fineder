@@ -14,7 +14,7 @@ export class App extends Component {
 
 	async componentDidMount() {
 		this.setState({ loading: true });
-		const res = await unsplash.get('/search/photos?query=cars&limit=10');
+		const res = await unsplash.get('/search/photos?query=cars&limit=20');
 		this.setState({ loading: false });
 		this.setState({ images: res.data.results });
 	}
@@ -25,6 +25,7 @@ export class App extends Component {
 		this.setState({ images: res.data.results });
 		console.log(text);
 	};
+
 	clearImages = () => {
 		this.setState({ loading: false });
 		this.setState({ images: [] });
